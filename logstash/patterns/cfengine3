@@ -1,0 +1,8 @@
+# CFEngine 3
+# Syslog Dates: Month Day HH:MM:SS
+CFESYSLOGTIMESTAMP %{MONTH} +%{MONTHDAY} %{TIME}
+CFESYSLOGPROG (?:cf3|cf-serverd|cf-execd|cf-monitord)(?:\[%{POSINT:pid}\])?
+CFESYSLOGHOST %{IPORHOST}
+CFESYSLOGFACILITY <%{NONNEGINT:facility}.%{NONNEGINT:priority}>
+# Log formats
+CFESYSLOGBASE %{CFESYSLOGTIMESTAMP:timestamp} (?:%{CFESYSLOGFACILITY} )?%{CFESYSLOGHOST:logsource} %{CFESYSLOGPROG}:
